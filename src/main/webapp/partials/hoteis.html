@@ -1,0 +1,63 @@
+<div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <h2>Hotéis</h2>
+                <button class="btn btn-primary" ui-sref="addHotel" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span>Criar Hotel</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="table-responsive">
+                    <table class="jh-table table table-striped">
+                        <thead>
+                            <tr>
+                                <th><span>ID</span></th>
+                                <th><span>Nome</span></th>
+                                <th><span>Descricao</span></th>
+                                <th><span>Endereco</span></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="hotel in hoteis track by hotel.id">
+                                <td><a ui-sref="viewHotel({id:hotel.id})">{{hotel.id}}</a></td>
+                                <td>{{hotel.nome}}</td>
+                                <td>{{hotel.descricao}}</td>
+                                <td>{{hotel.endereco}}</td>
+                                <td class="text-right">
+                                    <div class="btn-group flex-btn-group-container">
+                                        <button type="submit"
+                                                ui-sref="viewHotel({id:hotel.id})"
+                                                class="btn btn-info btn-sm">
+                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                            <span class="hidden-xs hidden-sm"></span>
+                                        </button>
+                                        <button type="submit"
+                                                ui-sref="editHotel({id:hotel.id})"
+                                                class="btn btn-primary btn-sm">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                            <span class="hidden-xs hidden-sm"></span>
+                                        </button>
+                                        <button type="submit"
+                                                ng-click="deleteHotel(hotel)"
+                                                class="btn btn-danger btn-sm">
+                                            <span class="glyphicon glyphicon-remove-circle"></span>
+                                            <span class="hidden-xs hidden-sm"></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
