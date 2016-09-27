@@ -23,18 +23,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-                .antMatchers(HttpMethod.OPTIONS, "/**")
-                .antMatchers("/app/**/*.{js,html}")
-                .antMatchers("/bower_components/**")
-                .antMatchers("/content/**");
-    }
+
 
     @Override
     protected void configure (HttpSecurity http) throws Exception {
-        http.csrf().disable();
+      http
+      		.authorizeRequests()
+      		        .anyRequest().authenticated()
+      		        .and()
+      		.formLogin()
+      		        .and()
+      		.httpBasic()
+                  .and()
+          .csrf().disable();
+        ;
     }
 
     @Autowired
